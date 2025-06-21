@@ -1,0 +1,107 @@
+package Herança8;
+
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner (System.in);
+		
+		Aluno aluno = new Aluno();
+		Funcionario funcionario = new Funcionario();
+		ArrayList<Aluno> alunos = new ArrayList<>();
+		ArrayList<Funcionario> funcionarios = new ArrayList<>();
+		
+		System.out.println("Bem-vindo ao sistema de Cadastramento de Alunos e Funcionários");
+		
+		while(true) {
+			
+			System.out.println("Você é um Aluno ou Funcionário? ");
+			String opcao = sc.nextLine();
+			
+			if(opcao.equalsIgnoreCase("Aluno")) {
+				
+				exibirMenu();
+				
+				System.out.println("Digite sua opcao: ");
+				String alunoOpcao = sc.nextLine();
+				
+				if (alunoOpcao.isEmpty()) {
+					System.out.println("Digite algo válido!");
+				}
+				else if(alunoOpcao.equalsIgnoreCase("1") || alunoOpcao.equalsIgnoreCase("Adicionar")) {
+					aluno.addAluno(sc, alunos);
+				}
+				else if(alunoOpcao.equalsIgnoreCase("2") || alunoOpcao.equalsIgnoreCase("Remover")) {
+					aluno.removerAluno(sc, alunos);
+				}
+				else if(alunoOpcao.equalsIgnoreCase("3")|| alunoOpcao.equalsIgnoreCase("Listar")) {
+					aluno.listarAluno(sc, alunos);
+				}
+				else if(alunoOpcao.equalsIgnoreCase("4") || alunoOpcao.equalsIgnoreCase("Sair")) {
+					System.out.println("Saindo do sistema");
+					break;
+				}
+				if (!doContinue(sc)) {
+		            break;
+		        }
+			}
+			
+			else if(opcao.equalsIgnoreCase("Funcionario")) {
+				
+				exibirMenu();
+				
+				System.out.println("Digite sua opcao: ");
+				String funcionarioOpcao = sc.nextLine();
+				
+				if(funcionarioOpcao.isEmpty()) {
+					System.out.println("Digite algo válido!");
+				}
+				else if(funcionarioOpcao.equalsIgnoreCase("1") || funcionarioOpcao.equalsIgnoreCase("Adicionar")) {
+					funcionario.addFuncionario(sc, funcionarios);
+				}
+				else if(funcionarioOpcao.equalsIgnoreCase("2") || funcionarioOpcao.equalsIgnoreCase("Remover")) {
+					funcionario.removerFuncionario(sc, funcionarios);
+				}
+				else if(funcionarioOpcao.equalsIgnoreCase("3") || funcionarioOpcao.equalsIgnoreCase("Listar")) {
+					funcionario.listarFuncionario(sc, funcionarios);
+				}
+				else if (funcionarioOpcao.equalsIgnoreCase("4") || funcionarioOpcao.equalsIgnoreCase("Sair")) {
+					System.out.println("Saindo do sistema");
+					break;
+				}
+				if (!doContinue(sc)) {
+		            break;
+				}
+			}	
+			
+			
+			else if(opcao.isEmpty()) {
+				System.out.println("Digite algo válido!");
+			}
+			
+			else {
+				System.out.println("Digite algo válido!");
+			}
+		}
+	System.out.println("Saindo do programa. Obrigado por usar!");
+	sc.close();
+	}
+
+	public static void exibirMenu() {
+		System.out.println("O que deseja: ");
+		System.out.println("1 - Adicionar Aluno/Funcionario;");
+		System.out.println("2 - Remover Aluno/Funcionario");
+		System.out.println("3 - Listar Aluno/Funcionario;");
+		System.out.println("4 - Sair.");
+	}
+	
+	public static boolean doContinue(Scanner sc) {
+	    System.out.print("Deseja continuar? (Sim/Não): ");
+	    String resposta = sc.nextLine();
+	    return resposta.equalsIgnoreCase("Sim");
+	}
+}
